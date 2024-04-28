@@ -25,8 +25,7 @@ void	*ft_memmove(void *s1, const void *s2, size_t n)
 int main(void)
 {
     char src[] = "Hello, World!";
-    char dest[50];
-    ft_memmove(src+2, src, 11);
-    printf("Copied string: %s\n", src);
+    char    *s1 = ft_memmove(src + 2, src, 11);
+    printf("Copied string: %s\n", s1);
     return (0);
 }
