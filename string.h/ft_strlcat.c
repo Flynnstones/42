@@ -27,7 +27,7 @@ size_t  ft_strlcat(char *dst, const char *src, size_t size)
 int main()
 {
     char src[] = "Hello, World!";
-    char dst[6] = "Hello";
+    char dst[20] = "Hello";
     size_t n = ft_strlcat(dst, src, 19);
     printf("dst: %s\n", dst);
     printf("n: %zu\n", n);
