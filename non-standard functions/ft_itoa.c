@@ -22,12 +22,12 @@ static unsigned int	ft_length(int number)
 char	*ft_itoa(int n)
 {
     char	*string;
-    long	number = n;  // Tratta n come un long
-    int	length = ft_length(n);
-    int	is_negative = (n < 0);
+    int	number = n; 
+    int	length = ft_length(number);
+    int	is_negative = (number < 0);
 
     if (number < 0)
-        number = -number;  // Questo non causerà un overflow perché number è un long
+        number = -number;
     string = (char *)malloc(sizeof(char) * (length + 1));
     if (!string)
         return (NULL);
@@ -36,9 +36,8 @@ char	*ft_itoa(int n)
     string[length] = '\0';
     while (number != 0)
     {
-        string[length - 1] = (number % 10) + '0';
+        string[--length] = (number % 10) + '0';
         number = number / 10;
-        length--;
     }
     if (is_negative)
         string[0] = '-';
@@ -47,9 +46,16 @@ char	*ft_itoa(int n)
 
 int	main()
 {
-	int	n = -123456;
+	int	n = -1234567890;
+    int length = ft_length(n);
 	char	*string = ft_itoa(n);
+    if (string == NULL)
+    {
+        printf("Memory allocation failed\n");
+        return (1);
+    }
 	printf("%s\n", string);
+    printf("Length: %d\n", length);
 	free(string);
 	return (0);
 }
