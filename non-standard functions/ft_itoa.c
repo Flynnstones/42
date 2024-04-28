@@ -22,22 +22,21 @@ static unsigned int	ft_length(int number)
 char	*ft_itoa(int n)
 {
     char	*string;
-    int	number = n; 
-    int	length = ft_length(number);
-    int	is_negative = (number < 0);
+    int	length = ft_length(n);
+    int	is_negative = (n < 0);
 
-    if (number < 0)
-        number = -number;
+    if (n < 0)
+        n = -n;
     string = (char *)malloc(sizeof(char) * (length + 1));
     if (!string)
         return (NULL);
-    if (number == 0)
+    if (n == 0)
         string[0] = '0';
     string[length] = '\0';
-    while (number != 0)
+    while (n != 0)
     {
-        string[--length] = (number % 10) + '0';
-        number = number / 10;
+        string[--length] = (n % 10) + '0';
+        n = n / 10;
     }
     if (is_negative)
         string[0] = '-';
@@ -47,7 +46,7 @@ char	*ft_itoa(int n)
 int	main()
 {
 	int	n = -1234567890;
-    int length = ft_length(n);
+    int l = ft_length(n);
 	char	*string = ft_itoa(n);
     if (string == NULL)
     {
@@ -55,7 +54,7 @@ int	main()
         return (1);
     }
 	printf("%s\n", string);
-    printf("Length: %d\n", length);
+    printf("Length: %d\n", l);
 	free(string);
 	return (0);
 }
