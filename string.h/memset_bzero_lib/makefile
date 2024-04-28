@@ -24,7 +24,7 @@ $(MAIN): $(NAME)
 all: lib $(MAIN)
 
 clean:
-	rm -f $(NAME) $(MAIN) $(OFILES)
+	rm -f $(MAIN) $(OFILES)
 
 fclean: clean
 	rm -f $(NAME)
