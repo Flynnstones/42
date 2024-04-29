@@ -62,7 +62,7 @@ void ft_lstdelone(t_list *lst, void (*del)(void *)) {
         return;
     }
     del(lst->content);
-    free(lst);
+    del(lst);
 }
 
 void ft_lstclear(t_list **lst, void (*del)(void *)) {
@@ -128,6 +128,11 @@ void print_content(void *content) {
     printf("%s\n", (char *)content);
 }
 
+void    free_content(void *content)
+{
+    free(content);
+}
+
 int main(void) {
     t_list *list = NULL;
     ft_lstadd_back(&list, ft_lstnew(strdup("Hello")));
@@ -136,7 +141,7 @@ int main(void) {
     ft_lstiter(list, print_content);
     t_list *new_list = ft_lstmap(list, toupper_content, free);
     ft_lstiter(new_list, print_content);
-    ft_lstclear(&list, free);
-    ft_lstclear(&new_list, free);
+    ft_lstclear(&list, free_content);
+    ft_lstclear(&new_list, free_content);
     return 0;
 }
