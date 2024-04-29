@@ -27,7 +27,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 int main()
 {
-    char str[] = "Hello, World!";
+    char str[] = "Hello, World!!!!!!";
     char *ptr = ft_substr(str, 11, 5);
     printf("Substring: %s\n", ptr);
     free(ptr);
