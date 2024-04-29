@@ -25,7 +25,8 @@ void    to_upper(unsigned int i, char *c)
 int main()
 {
     char    string[] = "Hello, World!";
+    printf("Original: %s\n", string);
     ft_striteri(string, to_upper);
-    printf("%s\n", string);
+    printf("Modified: %s\n", string);
     return (0);
 }

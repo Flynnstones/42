@@ -35,7 +35,8 @@ int main()
 {
     char    *string = "Hello, World!";
     char    *new_string = ft_strmapi(string, to_upper);
-    printf("%s\n", new_string);
+    printf("Original: %s\n", string);
+    printf("Modified: %s\n", new_string);
     free(new_string);
     return (0);
 }
