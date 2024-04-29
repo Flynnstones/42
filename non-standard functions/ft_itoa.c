@@ -37,15 +37,16 @@ char	*ft_itoa(int n)
     {
         string[--length] = (n % 10) + '0';
         n = n / 10;
+        printf("temp_length: %d\n", length);
     }
     if (is_negative)
-        string[0] = '-';
+        string[--length] = '-';
     return (string);
 }
 
 int	main()
 {
-	int	n = -1234567890;
+	int	n = -12;
     int l = ft_length(n);
 	char	*string = ft_itoa(n);
     if (string == NULL)
@@ -53,7 +54,7 @@ int	main()
         printf("Memory allocation failed\n");
         return (1);
     }
-	printf("%s\n", string);
+	printf("From int to char: %s\n", string);
     printf("Length: %d\n", l);
 	free(string);
 	return (0);
