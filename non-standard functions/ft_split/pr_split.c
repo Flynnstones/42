@@ -2,17 +2,37 @@
 #include <stdlib.h>
 #include <string.h>
 
-static void	ft_freeup(char *strs)
-{
-	int	i;
+static int	ft_wordcount(char *str, char c);
+static char	*ft_stralloc(char *str, char c, int *k);
+static void	ft_strcpy(char *word, char *str, char c, int j);
+static void	ft_freeup(char *strs);
 
+char	**ft_split(char const *str, char c)
+{
+	char	**strs;
+	int		i;
+	int		j;
+	int		pos;
+
+	if (str == NULL)
+		return (NULL);
 	i = 0;
-	while (strs[i] != '\0')
+	pos = 0;
+	j = ft_wordcount((char *)str, c);
+	strs = (char **)malloc(sizeof(char *) * (j + 1));
+	if (strs == NULL)
+		return (NULL);
+	strs[j] = NULL;
+	while (i < j)
 	{
-		free(strs);
+		strs[i] = ft_stralloc(((char *)str), c, &pos);
+		if (strs[i] == NULL)
+		{
+			(ft_freeup(strs[i]));
+		}
 		i++;
 	}
-	free(strs);
+	return (strs);
 }
 
 static int	ft_wordcount(char *str, char c)
@@ -35,21 +55,6 @@ static int	ft_wordcount(char *str, char c)
 		i++;
 	}
 	return (word);
-}
-
-static void	ft_strcpy(char *word, char *str, char c, int j)
-{
-	int	i;
-
-	i = 0;
-	while (str[j] != '\0' && str[j] == c)
-		j++;
-	while (str[j + i] != c && str[j + i] != '\0')
-	{
-		word[i] = str[j + i];
-		i++;
-	}
-	word[i] = '\0';
 }
 
 static char	*ft_stralloc(char *str, char c, int *k)
@@ -76,32 +81,32 @@ static char	*ft_stralloc(char *str, char c, int *k)
 	return (word);
 }
 
-char	**ft_split(char const *str, char c)
+static void	ft_strcpy(char *word, char *str, char c, int j)
 {
-	char	**strs;
-	int		i;
-	int		j;
-	int		pos;
+	int	i;
 
-	if (str == NULL)
-		return (NULL);
 	i = 0;
-	pos = 0;
-	j = ft_wordcount((char *)str, c);
-	strs = (char **)malloc(sizeof(char *) * (j + 1));
-	if (strs == NULL)
-		return (NULL);
-	strs[j] = NULL;
-	while (i < j)
+	while (str[j] != '\0' && str[j] == c)
+		j++;
+	while (str[j + i] != c && str[j + i] != '\0')
 	{
-		strs[i] = ft_stralloc(((char *)str), c, &pos);
-		if (strs[i] == NULL)
-		{
-			ft_freeup(strs[i]);
-		}
+		word[i] = str[j + i];
 		i++;
 	}
-	return (strs);
+	word[i] = '\0';
+}
+
+static void	ft_freeup(char *strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i] != '\0')
+	{
+		free(strs);
+		i++;
+	}
+	free(strs);
 }
 
 int main(void)

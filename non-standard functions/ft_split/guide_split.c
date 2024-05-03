@@ -3,10 +3,10 @@
 #include <string.h>
 #include <unistd.h>
 
+static void ft_initiate_vars(size_t *i, int *j, int *s_word);
 static int word_count(const char *str, char c);
 static char *fill_word(const char *str, int start, int end);
 static void *ft_free(char **strs, int count);
-static void ft_initiate_vars(size_t *i, int *j, int *s_word);
 
 char	**ft_split(const char *s, char c)
 {
@@ -43,39 +43,6 @@ static void ft_initiate_vars(size_t *i, int *j, int *s_word)
     *s_word = -1;
 }
 
-static void *ft_free(char **strs, int count)
-{
-    int i;
-
-    i  = 0;
-    while (i < count)
-    {
-        free(strs[i]);
-        i++;
-    }
-    free(strs);
-    return (NULL);
-}
-
-static char *fill_word(const char *str, int start, int end)
-{
-    char *word;
-    int i;
-
-    i = 0;
-    word = malloc((end - start + 1) * sizeof(char));
-    if (!word)
-        return (NULL);
-    while (start < end)
-    {
-        word[i] = str[start];
-        i++;
-        start++;
-    }
-    word[i] = '\0';
-    return (word);
-}
-
 static int word_count(const char *str, char c)
 {
     int count;
@@ -95,6 +62,38 @@ static int word_count(const char *str, char c)
         str++;
     }
     return (count);
+}
+static char *fill_word(const char *str, int start, int end)
+{
+    char *word;
+    int i;
+
+    i = 0;
+    word = malloc((end - start + 1) * sizeof(char));
+    if (!word)
+        return (NULL);
+    while (start < end)
+    {
+        word[i] = str[start];
+        i++;
+        start++;
+    }
+    word[i] = '\0';
+    return (word);
+}
+
+static void *ft_free(char **strs, int count)
+{
+    int i;
+
+    i  = 0;
+    while (i < count)
+    {
+        free(strs[i]);
+        i++;
+    }
+    free(strs);
+    return (NULL);
 }
 
 int main()
