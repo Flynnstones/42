@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-int     word_count(const char *s, char c);
-void    ft_initiate(size_t *i, size_t *j, size_t *k);
-void    *ft_free(char **strs, int count);
+static int  word_count(const char *s, char c);
+static void ft_initiate(size_t *i, size_t *j, size_t *k);
+static void *ft_free(char **strs, int count);
 
 
 char    **ft_split(char const *s, char c)
@@ -15,7 +15,7 @@ char    **ft_split(char const *s, char c)
     char    **arr;
 
     ft_initiate(&i, &j, &k);
-    arr = (char **)malloc(sizeof(char *) * (wordcount(s, c) + 1));
+    arr = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
     while (s[i])
     {
         while (s[i] == c)
@@ -34,14 +34,14 @@ char    **ft_split(char const *s, char c)
     return (arr);
 }
 
-void    ft_initiate(size_t *i, size_t *j, size_t *k)
+static void ft_initiate(size_t *i, size_t *j, size_t *k)
 {
     *i = 0;
     *j = 0;
     *k = 0;
 }
 
-int word_count(const char *s, char c)
+static int  word_count(const char *s, char c)
 {
     int count;
     int i;
@@ -61,7 +61,7 @@ int word_count(const char *s, char c)
     return (count);
 }
 
-void    *ft_free(char **strs, int count)
+static void *ft_free(char **strs, int count)
 {
     int i;
 
