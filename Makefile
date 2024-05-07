@@ -54,7 +54,6 @@ $(NAME):
 all: $(NAME)
 
 clean:
-	rm -f $(NAME)
 	rm -f $(OFILES)
 
 fclean: clean
