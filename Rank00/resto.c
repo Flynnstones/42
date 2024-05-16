@@ -5,7 +5,7 @@ float ft_fmod(float a, float b)
     return (a - b * ((int)(a / b)));
 }
 
-int ft_resto()
+int ft_resto(void)
 {
     int count;
 
